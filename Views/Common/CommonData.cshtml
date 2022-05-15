@@ -1,0 +1,85 @@
+﻿@model Shopping.Models.Master
+@{
+    ViewData["Title"] = "CommonData";
+}
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+    <style src="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"></style>
+    <style src="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css"></style>
+</head>
+
+<h2>Authors</h2>
+<table class="table table-bordered" id="finaltbl">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Part</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.Matrial)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Part</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+<br />
+<h2>Books</h2>
+<table class="table table-bordered" id="finaltbl1">
+    <thead>
+        <tr>
+            <th>Item Name</th>
+            <th>Item Type</th>
+            <th>State</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item2 in Model.MaterialItem)
+        {
+            <tr>
+                <td>@item2.ItemName</td>
+                <td>@item2.ItemType</td>
+                <td>@item2.State</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        $('#finaltbl, #finaltbl1').DataTable();
+    });
+
+    $('#finaltbl, #finaltbl1').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'print'
+        ]
+    });
+</script>
+<hr />
+<div class="container">
+    <div class="row">
+        <a class="btn btn-outline-dark col-3" asp-area="" asp-controller="Common" asp-action="Index">
+            New Enrty
+        </a>
+        <a class="btn btn-outline-dark col-3" asp-area="" asp-controller="Matrials" asp-action="Index">
+            Material List
+        </a>
+        <a class="btn btn-outline-dark col-3" asp-area="" asp-controller="MaterialItems" asp-action="Index">
+            Material Item List
+        </a>
+    </div>
+
+</div>
